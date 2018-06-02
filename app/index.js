@@ -8,6 +8,9 @@ import Themes from './screens/Themes';
 
 EStyleSheet.build({
   $primaryBlue: '#4F6D7A',
+  $primaryOrange: '#D57A66',
+  $primaryPurple: '#9E768F',
+  $primaryGreen: '#00BD9D',
   $white: '#FFFFFF',
   $border: '#E2E2E2',
   $inputText: '#797979',
