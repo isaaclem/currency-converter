@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, FlatList, View, StatusBar } from 'react-native';
+import { FlatList, View, StatusBar } from 'react-native';
 
 import currencies from '../data/currencies';
 import { ListItem, Separator } from '../components/List';
@@ -8,7 +8,7 @@ const TEMP_CURRENT_CURRENCY = 'CAD';
 
 class CurrencyList extends Component {
   handlePress = () => {
-    console.log('Row Pressed');
+    this.props.navigation.goBack(null);
   }
 
   render() {

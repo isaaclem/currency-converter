@@ -13,7 +13,7 @@ const styles = EStyleSheet.create({
 
 class Themes extends Component {
   handleThemePress = (color) => {
-    console.log('Theme Pressed!', color);
+    this.props.navigation.goBack();
   }
 
   render() {

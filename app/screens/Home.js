@@ -17,11 +17,11 @@ const TEMP_CONVERSION_DATE = new Date();
 
 class Home extends Component {
   handlePressBaseCurrency = () => {
-    console.log('PRESSED!');
+    this.props.navigation.navigate('CurrencyList', { title: 'Base Currency' });
   }
 
   handlePressQuoteCurrency = () => {
-    console.log('PRESSED!');
+    this.props.navigation.navigate('CurrencyList', { title: 'Quote Currency' });
   }
 
   handleTextChange = (text) => {
@@ -33,7 +33,7 @@ class Home extends Component {
   }
 
   handleSetting = () => {
-    console.log('Setting Pressed');
+    this.props.navigation.navigate('Options');
   }
 
   render() {
