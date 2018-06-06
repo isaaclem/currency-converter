@@ -2,5 +2,6 @@
   "extends": "rallycoding",
   "rules": {
     "global-require": "off"
-  }
+  },
+  "globals": { "fetch": false }
 }
