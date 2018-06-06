@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
 import { FlatList, View, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 
+import { changeBaseCurrency, changeQuoteCurrency } from '../actions/currencies';
 import currencies from '../data/currencies';
 import { ListItem, Separator } from '../components/List';
 
-const TEMP_CURRENT_CURRENCY = 'CAD';
-
 class CurrencyList extends Component {
-  handlePress = () => {
+  handlePress = currency => {
+    const { type } = this.props.navigation.state.params;
+
+    if (type === 'base') {
+      this.props.dispatch(changeBaseCurrency(currency));
+    } else if (type === 'quote') {
+      this.props.dispatch(changeQuoteCurrency(currency));
+    }
+
     this.props.navigation.goBack(null);
   }
 
   render() {
+    let comparison = this.props.baseCurrency;
+    if (this.props.navigation.state.params.type === 'quote') {
+      comparison = this.props.quoteCurrency;
+    }
+
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="default" translucent={false} />
@@ -20,8 +33,9 @@ class CurrencyList extends Component {
           renderItem={({ item }) => (
             <ListItem 
               text={item} 
-              selected={item === TEMP_CURRENT_CURRENCY}
-              onPress={this.handlePress}
+              selected={item === comparison}
+              onPress={() => this.handlePress(item)}
+              iconBackground={this.props.primaryColor}
             />
           )}
           keyExtractor={(item) => item}
@@ -32,4 +46,10 @@ class CurrencyList extends Component {
   }
 }
 
-export default CurrencyList;
+const mapStateToProps = state => ({
+    baseCurrency: state.currencies.baseCurrency,
+    quoteCurrency: state.currencies.quoteCurrency,
+    primaryColor: state.theme.primaryColor
+});
+
+export default connect(mapStateToProps)(CurrencyList);

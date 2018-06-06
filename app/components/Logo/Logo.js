@@ -32,16 +32,6 @@ class Logo extends Component {
   }
 
   keyboardShow = () => {
-    // Animated.timing(this.containerImageWidth, {
-    //   toValue: styles.$smallContainerSize,
-    //   duration: ANIMATION_DURATION
-    // }).start();
-
-    // Animated.timing(this.imageWidth, {
-    //   toValue: styles.$smallImageSize,
-    //   duration: ANIMATION_DURATION
-    // }).start();
-
     Animated.parallel([
       Animated.timing(this.containerImageWidth, {
         toValue: styles.$smallContainerSize,
@@ -73,7 +63,11 @@ class Logo extends Component {
       { width: this.containerImageWidth, height: this.containerImageWidth }
     ];
 
-    const imageStyle = [styles.logo, { width: this.imageWidth }];
+    const imageStyle = [
+      styles.logo, 
+      { width: this.imageWidth },
+      this.props.tintColor ? { tintColor: this.props.tintColor } : null
+    ];
 
     return (
       <View style={styles.container}>
